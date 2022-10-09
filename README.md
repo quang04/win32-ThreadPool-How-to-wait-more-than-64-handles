@@ -9,6 +9,6 @@ The idea for dealing more than 64 objects is inspired from [here](https://apps.d
 The limitation of this idea is the maximum 4096 handles (64x64)
 
 ## Usage
-The project is using vs2019, c++20 and win32/mfc core
+The project is using vs2019, x64, c++20 and win32/mfc core
 
 
