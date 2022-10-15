@@ -56,16 +56,16 @@ int main()
     //Vector stores all handle corresponding to each thread
     HandleVector vectorWaitAllThread;
 
-    //Create 3000 threads and feed to the pool
+    //Create 3000 tasks and feed to the pool
     //Currently max is 64x64 thread
-    const int& totalThreadCreate = 3000;
+    const int& totalTaskCreate = 3000;
 
     //Vector wait for group handle
     HandleVector vectorWaitGroup;
 
     //Calculate group need
-    int groupNeeded = totalThreadCreate / MAXIMUM_WAIT_OBJECTS;
-    groupNeeded += (totalThreadCreate % MAXIMUM_WAIT_OBJECTS) == 0 ? 0 : 1;
+    int groupNeeded = totalTaskCreate / MAXIMUM_WAIT_OBJECTS;
+    groupNeeded += (totalTaskCreate % MAXIMUM_WAIT_OBJECTS) == 0 ? 0 : 1;
 
     auto startTime = std::chrono::high_resolution_clock::now();
 
@@ -73,9 +73,9 @@ int main()
     {
         CTaskBase* pTask = nullptr;
 
-        vectorWaitAllThread.reserve(totalThreadCreate);
+        vectorWaitAllThread.reserve(totalTaskCreate);
 
-        if (CreateTask(tasks, totalThreadCreate))
+        if (CreateTask(tasks, totalTaskCreate))
         {
             //feed to pool and store handle
             for (CTaskBase* p : tasks)
@@ -94,7 +94,7 @@ int main()
                 if ((j + 1) < groupNeeded)
                     pData->nQuantity = MAXIMUM_WAIT_OBJECTS;
                 else
-                    pData->nQuantity = totalThreadCreate % MAXIMUM_WAIT_OBJECTS;
+                    pData->nQuantity = totalTaskCreate % MAXIMUM_WAIT_OBJECTS;
 
                 pData->vectorStoreHandles.resize(pData->nQuantity);
                 std::copy(beginPos,
