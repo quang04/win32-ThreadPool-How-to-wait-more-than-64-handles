@@ -1,5 +1,7 @@
 # win32-ThreadPool-How-to-wait-more-than-64-handles
-how to use thread pool in win32 and waiting more than 64 handles
+how to use thread pool in win32 and waiting more than 64 handles.
+
+The program will create 3000 tasks and feed to the pool thread for execution. Then software will wait all a tasks for completion and continue main thread.
 
 ## Introduction
 This is illustration how to use thread pool in win32 and how deal with waiting more than 64 handles.
