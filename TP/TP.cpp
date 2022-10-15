@@ -11,7 +11,8 @@
 
 DWORD WINAPI WaitThreadGroup(LPVOID lpParam)
 {
-    pStoreHandleStruct data = reinterpret_cast<pStoreHandleStruct>(lpParam);
+    pStoreHandleStruct data = std::move(reinterpret_cast<pStoreHandleStruct>(lpParam));
+    lpParam = nullptr;
 
     WaitForMultipleObjects(data->nQuantity, data->vectorStoreHandles.data(), TRUE, INFINITE);
 
